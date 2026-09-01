@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Train With Pedz — Coaching for a Healthier, Longer, Better Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F0ECE1;
+    --cream-2:#E7E1D2;
+    --ink:#181A1E;
+    --ink-soft:#4B4D52;
+    --orange:#EB6A35;
+    --orange-dark:#C24F22;
+    --blue:#2654B2;
+    --blue-dark:#16336C;
+    --brown: #6D3B07;
+    --line:#D9D1BC;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+  h1{font-family:'League Spartan',sans-serif;font-weight:700;line-height:1.02;letter-spacing:-0.01em;}
+  h2,h3{font-family:'Montserrat',sans-serif;font-weight:700;line-height:1.02;letter-spacing:-0.01em;}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:0.02em;
+    padding:15px 26px;
+    border:2px solid transparent;
+    border-radius: 25px;
+    cursor:pointer;
+    transition:transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .btn:focus-visible{outline:3px solid var(--blue);outline-offset:3px;}
+  .btn-primary{background:var(--orange);color:#fff;}
+  .btn-primary:hover{background:var(--blue);transform:translateY(-2px);}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px);}
+  .btn-light{border-color:rgba(255,255,255,.5);color:#fff;}
+  .btn-light:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:translateY(-2px);}
+
+  /* ---- NAV ---- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(240,236,225,.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:10px 10px 0px 10px;max-width:1160px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'League Spartan',sans-serif;font-weight:800;font-size:15px;letter-spacing:.02em;}
+  /*brand picture upper left*/
+  .brand img{height:120px;width:auto;}
+  .nav-links{display:flex;align-items:center;gap:34px;font-size:14px;font-weight:600;}
+  .nav-links a{position:relative;padding:4px 0;}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--blue);transition:width .2s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex;align-items:center;}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .menu-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:20px 0;}
+
+  /* ---- HERO ---- */
+  .hero{position:relative;padding:88px 0 96px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;}
+  .hero h1{font-size:clamp(60px,6.4vw,45px);}
+  .hero h1 .line-blue{color:var(--blue);}
+  .hero h1 .line-orange{color:var(--orange);}
+  .hero p.lead{
+    margin-top:26px;max-width:480px;font-size:18px;line-height:1.55;color:var(--ink-soft);margin-left: 10px;
+  }
+  .hero-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;}
+  .hero p.line-italic-blue{color:var(--blue);font-style: italic;}
+
+  /* Signature: habit streak grid */
+  .streak-card{
+    background: #2654B2;
+    border-radius:6px;
+    padding:28px 26px 26px;
+    color:#fff;
+    position:relative;
+    box-shadow:14px 14px 0 var(--orange);
+  }
+  .streak-card .streak-label{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:.1em;color:#B9C8EA;margin-bottom:4px;}
+  .streak-card .streak-title{font-family:'League Spartan',sans-serif;font-weight:800;font-size:22px;margin-bottom:18px;}
+  .streak-grid{display:grid;grid-template-columns:repeat(13,1fr);gap:5px;}
+  .streak-grid span{
+    aspect-ratio:1/1;
+    background: #2654b2;
+    border-radius:2px;
+    animation:fillIn .5s ease forwards;
+    opacity:0;
+    transform:scale(.4);
+  }
+  .streak-grid span.on{background:var(--orange);}
+  @keyframes fillIn{to{opacity:1;transform:scale(1);}}
+  .streak-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-family:'Poppins',sans-serif;font-size:12px;color:#B9C8EA;}
+  .streak-foot strong{color:#fff;font-size:20px;font-family:'League Spartan',sans-serif;font-weight:800;}
+
+  @media(prefers-reduced-motion: reduce){
+    .streak-grid span{animation:none;opacity:1;transform:none;}
+  }
+
+  /* ---- SECTION SHARED ---- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(30px,4vw,46px);margin-top:14px;}
+  .section-head h1{font-size: 60px; padding-top: 3%; color:var(--blue); align-items: center;}
+  .section-head p{margin-top:16px;font-size:17px;color:var(--ink-soft);line-height:1.6;}
+  .hairline{border-top:1px solid var(--line);}
+
+  /* --- ABOUT US: split screen ---- */
+  .about-us-section{padding:0;}
+  .about-split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:stretch;
+  }
+  .about-col{padding:96px 48px;}
+  .about-col-left{background:var(--cream);}
+
+  .multiple-choice {
+    font-size: 17px;
+  }
+  .multiple-choice p {color: #F0ECE1;}
+
+  .a-choice {
+    border-radius: 25px;
+    background-color: #fc7038;
+    width: auto;
+    height: fit-content;
+    padding: 2%;
+    margin-bottom: 2%;
+  }
+  .b-choice {
+    border-radius: 25px;
+    background-color: #fc7038;
+    width: auto;
+    height: fit-content;
+    padding: 2%;
+    margin-bottom: 2%;
+  }
+  .c-choice {
+    border-radius: 25px;
+    background-color: #fc7038;
+    width: auto;
+    height: fit-content;
+    padding: 2%;
+    margin-bottom: 2%;
+  }
+  .d-choice {
+    border-radius: 25px;
+    background-color: #fc7038;
+    width: auto;
+    height: fit-content;
+    padding: 2%;
+    margin-bottom: 2%;
+  }
+  .about-us-footer h1 {color:var(--blue); font-size: 25px; font-weight: lighter;}
+  .about-us-footer h1 .bold-line {font-weight: bold;}
+  .about-us-footer {
+    margin-top: 50px;
+  }
+
+  /* ABOUT US-RIGHT SIDE */
+  .meet-your-coach {
+    background-color: #2654b2;
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    
+  }
+  
+  .meet-your-coach h1,h2,h3{
+    color:#fff;
+    font-size:clamp(70px,3.2vw,70px);
+    padding: 5%;
+    font-family:'League Spartan',sans-serif;font-weight:700;line-height:1.02;letter-spacing:-0.01em;
+  }
+  .meet-your-coach p{
+    margin-top:20px;
+    color:#DCE4F5;
+    font-size:16px;
+    line-height:1.6;
+    max-width:420px;
+  }
+  .meet-your-coach-bold-italic{font-weight:700;font-style:italic;color:#fff;}
+
+  /* ---- HOW IT WORKS (full-bleed image) ---- */
+  #how-it-works{padding:0;}
+  .img-section {
+    width: 80%;
+    height: 80%;
+    padding: 0;
+    margin: 0;
+  }
+  .img-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---- PACKAGES ---- */
+  #packages{
+    background: var(--blue);
+  }
+  #packages .pricing-note{
+    color: #F0ECE1;
+  }
+  .section-head-packages{max-width:640px;margin-bottom:56px;}
+  .section-head-packages p{margin-top:16px;font-size:17px;color:var(--ink-soft);line-height:1.6;}
+  .section-head-packages h1,h2,h3{
+    color:#F0ECE1;
+    font-size:clamp(80px,3.2vw,80px);
+    padding: 5px;
+    font-family:'League Spartan',sans-serif;font-weight:700;line-height:1.02;letter-spacing:-0.01em;
+  }
+
+  .pricing{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .price-card{
+    background:#F0ECE1;border:1px solid var(--line);border-radius:6px;padding:34px 28px;
+    display:flex;flex-direction:column;
+  }
+
+  /* middle progression card */
+  .price-card.progression{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange);position:relative;}
+  .price-card.progression .badge{
+    position:absolute;top:-13px;left:28px;background:var(--orange);color:#F0ECE1;align-items: center;
+    font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:.08em;
+    padding:5px 10px;border-radius:3px;
+  }
+  .price-card .tier{font-family:'League Spartan',sans-serif;font-weight:800;font-size:20px;}
+  .price-card .amount{font-family:'Poppins',sans-serif;font-size:34px;font-weight:600;margin:14px 0 4px;color:var(--blue);}
+  .price-card .amount span{font-style:italic;font-size:14px;color:var(--ink-soft);font-family:'Inter',sans-serif;font-weight:500;}
+  .price-card .desc{color:var(--ink-soft);font-size:14.5px;margin-bottom:22px;}
+  .price-card .bold{font-weight: bold; font-style: italic;}
+  
+  .price-card .btn{justify-content:center;width:100%;}
+  .pay-link{display:block;text-align:center;margin-top:12px;font-size:13px;font-weight:600;color:var(--blue);}
+  .pay-link:hover{color:var(--orange-dark);}
+  .pricing-note{margin-top:24px;font-size:13px;color:var(--ink-soft);font-family:'Poppins',sans-serif;text-align:center;line-height:1.6;}
+
+  /* ---- CLIENT WINS (carousel) ---- */
+  section{padding:96px 0;}
+  .section-head-testimonials {max-width:640px;margin-bottom:56px;}
+  .section-head-testimonials h2{color:#2654B2;clamp(30px,4vw,46px);margin-top:14px;font-size: 70px;}
+  .section-head-testimonials h1{font-size: 60px; padding-top: 3%; color:var(--blue); align-items: center;}
+  .section-head-testimonials p{margin-top:16px;font-size:17px;color:var(--ink-soft);line-height:1.6;}
+  .wins-carousel{
+    position:relative;
+    max-width:640px;
+    margin:0 auto;
+    overflow:hidden;
+  }
+  .wins-track{
+    display:flex;
+    transition:transform .4s ease;
+  }
+  .wins-track .win-card{
+    flex:0 0 100%;
+  }
+  .win-card{
+    background:#fff;border:1px dashed var(--blue);border-radius:10px;padding:28px 24px;
+  }
+  .win-photo{
+    width:auto;height:500px;border-radius:20%;background:var(--cream-2);border:1px dashed var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:5%;
+  }
+  .win-quote{
+    font-weight: bold;
+    font-size:20px;
+    color:var(--ink-soft);
+    line-height:1.2;
+    margin-bottom:18px;
+    font-style:italic;
+    text-align: justify;
+  }
+  .win-name{
+    font-weight:lighter;
+    font-size:17px;
+    font-style: italic;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  .win-stat{font-size:13px;color:var(--orange-dark);font-weight:600;margin-top:4px;}
+
+  .carousel-controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-bottom:24px;
+  }
+  .carousel-btn{
+    width:40px;height:40px;border-radius:50%;
+    border:1px solid var(--line);background:#fff;cursor:pointer;
+    font-size:16px;display:flex;align-items:center;justify-content:center;
+    transition:border-color .15s ease,color .15s ease;
+  }
+  .carousel-btn:hover{border-color:var(--blue);color:var(--blue);}
+  .carousel-dots{display:flex;gap:8px;}
+  .carousel-dots button{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--line);border:none;padding:0;cursor:pointer;
+  }
+  .carousel-dots button.active{background:var(--orange);}
+
+  /* ---- CONTACT (dark) ---- 
+  .contact{background:var(--blue-dark);color:#fff;}
+  .contact .section-head p{color:#C7D2EA;}
+  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start;}
+  .contact-copy h2{color:#fff;font-size:clamp(30px,4vw,44px);}
+  .contact-copy p{margin-top:18px;color:#C7D2EA;font-size:16px;line-height:1.6;max-width:420px;}
+  .form-card{background:#fff;border-radius:6px;padding:34px;color:var(--ink);}
+  .booking-cta{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;}
+  .booking-note{font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:360px;}
+  .booking-cta .btn{width:100%;justify-content:center;} */
+
+  /* ---- FOOTER ---- */
+  footer{background:var(--brown);color:#B8B9BC;padding:20px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .footer-brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:'League Spartan',sans-serif;font-weight:800;font-size:14px;}
+  /*brand picture lower left*/
+  .footer-brand img{height:175px;width:auto;filter:brightness(0) invert(1);}
+  footer .fine{font-family:'Poppins',sans-serif;font-size:12px;}
+  .footer-socials{display:flex;align-items:center;gap:14px;}
+  .footer-socials a{
+    display:flex;align-items:center;justify-content:center;
+    width:36px;height:36px;border-radius:50%;
+    border:1px solid rgba(255,255,255,.25);color:#B8B9BC;
+    transition:border-color .15s ease, color .15s ease, transform .15s ease;
+  }
+  .footer-socials a:hover{border-color:var(--blue);color:#2654B2;transform:translateY(-2px);}
+  .footer-socials svg{width:17px;height:17px;fill:currentColor;}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .about-split{grid-template-columns:1fr;}
+    .about-col{padding:56px 32px;}
+    .pricing{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;gap:40px;}
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="brand" href="#top">
+      <img src="img/TWP logo (text).png" alt="Train With Pedz logo">
+    </a>
+    <div class="nav-links">
+      <a href="#about-us">About Us</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#packages">Packages</a>
+      <a href="#wins">Client Wins</a>
+      <!--<a href="#contact">Contact</a>-->
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min" target="_blank" rel="noopener">Book Free Consult</a>
+    </div>
+    <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1><span class="line-blue">YOUR </span>GOALS.</class>
+        <br><span class="line-blue">YOUR </span>PACE.</h1>
+        <h1>TRAINING BUILT <br>FOR <span class="line-orange">YOU</span>.</h1>
+        <p class="lead">Personalized One-on-one coaching that turns healthy habits into your new normal. Built for beginners. Made to actually stick, <span class="line-italic-blue">for a healthier, longer, and better life</span>.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min" target="_blank" rel="noopener">LET'S TALK</a>
+          <a class="btn btn-ghost" href="#how-it-works">READ MORE</a>
+        </div>
+
+      </div>
+      <div class="streak-card">
+        <div class="streak-label">Consistency &gt; intensity</div>
+        <div class="streak-title">90 days of showing up</div>
+        <div class="streak-grid" id="streakGrid"></div>
+        <div class="streak-foot">
+          <span>Every square is a day you kept the promise.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT US -->
+  <section id="about-us" class="hairline about-us-section">
+    <div class="about-split">
+
+      <div class="about-col about-col-left">
+        <div class="section-head">
+          <h1>Are You Looking For...</h1>
+        </div>
+        <div class="multiple-choice">
+          <div class="a-choice">
+            <p>A workout plan that actually fits your schedule?</p>
+          </div>
+          <div class="b-choice">
+            <p>Guidance on what to eat without restrictive diets?</p>
+          </div>
+          <div class="c-choice">
+            <p>Someone to keepy you accountable and motivated?</p>
+          </div>
+          <div class="d-choice">
+            <p>A sustainable approach to getting stronger and healthier?</p>
+          </div>
+        </div>
+        <div class="about-us-footer">
+          <h1>If you found yourself saying <span class="bold-line">'YES'</span> to atleast one, you've come to the right place.</h1>
+        </div>
+      </div>
+
+      <div class="about-col about-col-right meet-your-coach">
+        <h1>Meet Your Coach</h1>
+        <img src="img/Meet Coach Pedz.jpg" alt="Coach Pedz" width="400" height="400">
+        <p><span class="meet-your-coach-bold-italic">Hi, I'm Coach Pedz!</span> I'm a Certified Personal Trainer dedicated to help you train smarter, build better habits, and achieve results you can maintain.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="hairline">
+    <div class="img-section">
+      <img src="img/How-it-works.png" alt="Roadmap">
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section id="packages" class="hairline">
+    <div class="wrap">
+    <div class="container">
+      <div class="section-head-packages">
+        <h2>Find Your Fit*</h2>
+      </div>
+      <div class="pricing">
+        <div class="price-card progression">
+          <span class="badge">3 MONTHS</span>
+          <div class="tier">FOUNDATION</div>
+          <div class="amount">₱18,000 <span>(P6,000/mo)</span></div>
+          <p class="bold">For those ready to start their fitness journey.</p>
+          <br><p class="desc">Build your foundation, learn the basics, and get comfortable making fitness part of your routine.</p>
+          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min">I LIKE THIS ONE</a>
+        </div>
+
+        <div class="price-card progression">
+          <span class="badge">6 MONTHS</span>
+          <div class="tier">PROGRESSION</div>
+          <div class="amount">₱33,000 <span>(P5,500/mo)</span></div>
+          <p class="bold">For those ready to build real consistency.</p>
+          <br><p class="desc">Give Yourself more time to develop your training, strengthen your habits, and make steady progress toward your goals.</p>
+          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min">THIS IS FOR ME</a>
+        </div>
+
+        <div class="price-card progression">
+          <span class="badge">12 MONTHS</span>
+          <div class="tier">TRANSFORMATION</div>
+          <div class="amount">₱60,000 <span>(P5,000/mo)</span></div>
+          <p class="bold">For those ready to make lasting change.</p>
+          <br><p class="desc">Commit to the process with the time and support to work toward bigger goals and create habits that become part of your lifestyle.</p>
+          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min">IM READY TO GO ALL IN</a>
+        </div>
+      </div>
+      <p class="pricing-note">*Every package includes the same 1:1 coaching experience: personalized training, weekly check-ins, nutrition guidance, progress tracking, and ongoing support.<br>Choose the commitment that works for you. We'll walk you through everything in your free consultation before you decide.</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- CLIENT WINS -->
+  <section id="wins" class="hairline">
+    <div class="wrap">
+      <div class="section-head-testimonials">
+        <h2>Client Wins</h2>
+      </div>
+      <div class="wins-carousel">
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="winsPrev" aria-label="Previous testimonial">&#8592;</button>
+          <div class="carousel-dots" id="winsDots"></div>
+          <button class="carousel-btn" id="winsNext" aria-label="Next testimonial">&#8594;</button>
+        </div>
+        <div class="wins-track">
+          <div class="win-card">
+            <div class="win-photo"><img src="img/Janix.png" alt="Janayka"></div>
+            <p class="win-quote">"I feel healthier, stronger, and with habits I never thought I'd be able to sustain. Thank you, Coach Pedz, for helping me become a better version of myself at 30."</p>
+            <div class="win-name">- Janix</div>
+          </div>
+          <div class="win-card">
+            <div class="win-photo"><img src="img/Aljon.png" alt="Aljon"></div>
+            <p class="win-quote">"Placeholder"</p>
+            <div class="win-name">- Aljon</div>
+          </div>
+          <div class="win-card">
+            <div class="win-photo"><img src="img/Moe.png" alt="Moe"></div>
+            <p class="win-quote">"Working with Coach Pedz has made a big difference in my fitness journey. He's not just focused on workouts, but also on proper form, progression, and making sure my strength training fits my current level."</p>
+            <div class="win-name">- Moe</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT 
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <h2>Let's build the habit.</h2>
+        <p>Tell me a bit about where you're at and what you want out of coaching. I'll follow up personally to set up your free consultation.</p>
+      </div>
+      <div class="form-card">
+        <div class="booking-cta">
+          <p class="booking-note">Pick a time that works for you and I'll follow up personally to confirm your free consultation.</p>
+          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min" target="_blank" rel="noopener">Book Your Free Consult</a>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+</main>
+
+<!-- FOOTER-->
+<footer>
+  <div class="wrap footer-row">
+    <div class="footer-brand">
+      <img src="img/TWP logo (text).png" alt="Train With Pedz">
+    </div>
+    <div class="footer-socials">
+      <a href="https://web.facebook.com/dpeds04" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/trainwithpedz/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.24 2.22.41.56.21.96.47 1.38.89.42.42.68.82.89 1.38.17.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.8-.41 2.22-.21.56-.47.96-.89 1.38-.42.42-.82.68-1.38.89-.42.17-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.24-2.22-.41-.56-.21-.96-.47-1.38-.89-.42-.42-.68-.82-.89-1.38-.17-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.24-1.8.41-2.22.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.42-.17 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg>
+      </a>
+      <a href="LINKEDIN_LINK" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.37 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+    </div>
+    <div class="fine">© 2026 Train With Pedz. Helping individuals build sustainable habits for a healthier, longer, and better life.</div>
+  </div>
+</footer>
+
+<script>
+  // Signature habit-streak grid: builds a 13x6 grid, lights up a random ~65% in a staggered wave
+  const grid = document.getElementById('streakGrid');
+  const total = 78;
+  const litIndices = new Set();
+  while(litIndices.size < Math.round(total*0.62)){
+    litIndices.add(Math.floor(Math.random()*total));
+  }
+  for(let i=0;i<total;i++){
+    const sq = document.createElement('span');
+    if(litIndices.has(i)) sq.classList.add('on');
+    sq.style.animationDelay = (Math.random()*1.1).toFixed(2)+'s';
+    grid.appendChild(sq);
+  }
+</script>
+
+<script>
+  // Client wins carousel
+  (function(){
+    const track = document.querySelector('.wins-track');
+    const cards = track.querySelectorAll('.win-card');
+    const prevBtn = document.getElementById('winsPrev');
+    const nextBtn = document.getElementById('winsNext');
+    const dotsWrap = document.getElementById('winsDots');
+    let index = 0;
+
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function update(){
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dotsWrap.querySelectorAll('button').forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+    function goTo(i){
+      index = (i + cards.length) % cards.length;
+      update();
+    }
+    prevBtn.addEventListener('click', () => goTo(index - 1));
+    nextBtn.addEventListener('click', () => goTo(index + 1));
+
+    update();
+  })();
+</script>
+
+<!-- Vercel Web Analytics — after deploying on Vercel, enable "Web Analytics" in your project settings for this to start collecting data -->
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
