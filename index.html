@@ -79,8 +79,38 @@
   .nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--blue);transition:width .2s ease;}
   .nav-links a:hover::after{width:100%;}
   .nav-cta{display:flex;align-items:center;}
-  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
-  .menu-toggle span{display:block;width:24px;height:2px;background:var(--ink);margin:20px 0;}
+  .menu-toggle{
+    display:none;background:none;border:none;cursor:pointer;padding:6px;
+    flex-direction:column;justify-content:center;gap:5px;
+    width:36px;height:36px;
+  }
+  .menu-toggle span{
+    display:block;width:24px;height:2px;background:var(--ink);
+    margin:0;transition:transform .2s ease, opacity .2s ease;
+  }
+  .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-toggle.open span:nth-child(2){opacity:0;}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* Mobile dropdown panel for nav links */
+  .mobile-nav-panel{
+    display:none;
+    flex-direction:column;
+    background:var(--cream);
+    border-top:1px solid var(--line);
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .25s ease;
+  }
+  .mobile-nav-panel.open{max-height:400px;}
+  .mobile-nav-panel a{
+    padding:16px 24px;
+    font-size:15px;
+    font-weight:600;
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-nav-panel .mobile-cta{padding:20px 24px;}
+  .mobile-nav-panel .mobile-cta .btn{width:100%;justify-content:center;}
 
   /* ---- HERO ---- */
   .hero{position:relative;padding:88px 0 96px;overflow:hidden;}
@@ -209,6 +239,20 @@
   }
   .meet-your-coach-bold-italic{font-weight:700;font-style:italic;color:#fff;}
 
+  /* Coach photo: keep proportions, never stretch */
+  .coach-photo{
+    width:min(400px, 100%);
+    aspect-ratio:1/1;
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .coach-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center top;
+  }
+
   /* ---- HOW IT WORKS (full-bleed image) ---- */
   #how-it-works{padding:0;}
   .img-section {
@@ -334,17 +378,6 @@
   }
   .carousel-dots button.active{background:var(--orange);}
 
-  /* ---- CONTACT (dark) ---- 
-  .contact{background:var(--blue-dark);color:#fff;}
-  .contact .section-head p{color:#C7D2EA;}
-  .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start;}
-  .contact-copy h2{color:#fff;font-size:clamp(30px,4vw,44px);}
-  .contact-copy p{margin-top:18px;color:#C7D2EA;font-size:16px;line-height:1.6;max-width:420px;}
-  .form-card{background:#fff;border-radius:6px;padding:34px;color:var(--ink);}
-  .booking-cta{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;}
-  .booking-note{font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:360px;}
-  .booking-cta .btn{width:100%;justify-content:center;} */
-
   /* ---- FOOTER ---- */
   footer{background:var(--brown);color:#B8B9BC;padding:20px 0;}
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
@@ -369,7 +402,17 @@
     .pricing{grid-template-columns:1fr;}
     .contact-grid{grid-template-columns:1fr;gap:40px;}
     .nav-links{display:none;}
-    .menu-toggle{display:block;}
+    .menu-toggle{display:flex;}
+    .mobile-nav-panel{display:flex;}
+    .brand img{height:70px;}
+    nav{padding:8px 10px;flex-wrap:nowrap;gap:10px;}
+    .nav-cta .btn{padding:11px 16px;font-size:12.5px;white-space:nowrap;}
+  }
+
+  @media(max-width:480px){
+    .brand img{height:56px;}
+    .hero{padding:48px 0 56px;}
+    .nav-cta .btn{padding:9px 12px;font-size:11.5px;}
   }
 </style>
 </head>
@@ -390,8 +433,16 @@
     <div class="nav-cta">
       <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min" target="_blank" rel="noopener">Book Free Consult</a>
     </div>
-    <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNavPanel">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div class="mobile-nav-panel" id="mobileNavPanel">
+    <a href="#about-us">About Us</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#packages">Packages</a>
+    <a href="#wins">Client Wins</a>
+  </div>
 </header>
 
 <main id="top">
@@ -400,7 +451,7 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <h1><span class="line-blue">YOUR </span>GOALS.</class>
+        <h1><span class="line-blue">YOUR </span>GOALS.
         <br><span class="line-blue">YOUR </span>PACE.</h1>
         <h1>TRAINING BUILT <br>FOR <span class="line-orange">YOU</span>.</h1>
         <p class="lead">Personalized One-on-one coaching that turns healthy habits into your new normal. Built for beginners. Made to actually stick, <span class="line-italic-blue">for a healthier, longer, and better life</span>.</p>
@@ -450,7 +501,9 @@
 
       <div class="about-col about-col-right meet-your-coach">
         <h1>Meet Your Coach</h1>
-        <img src="img/Meet Coach Pedz.jpg" alt="Coach Pedz" width="400" height="400">
+        <div class="coach-photo">
+          <img src="img/Meet Coach Pedz.jpg" alt="Coach Pedz">
+        </div>
         <p><span class="meet-your-coach-bold-italic">Hi, I'm Coach Pedz!</span> I'm a Certified Personal Trainer dedicated to help you train smarter, build better habits, and achieve results you can maintain.</p>
       </div>
 
@@ -524,7 +577,7 @@
           </div>
           <div class="win-card">
             <div class="win-photo"><img src="img/Aljon.png" alt="Aljon"></div>
-            <p class="win-quote">"Pedz helped me build a sustainable routine that changed my life, both in and out of the gym. Together, we developed better habits, understanding, and discipline. In just 12 months, I’ve achieved PRs on PRs and an amazing body transformation."</p>
+            <p class="win-quote">"Pedz helped me build a sustainable routine that changed my life, both in and out of the gym. Together, we developed better habits, understanding, and discipline. In just 12 months, I've achieved PRs on PRs and an amazing body transformation."</p>
             <div class="win-name">- Aljon</div>
           </div>
           <div class="win-card">
@@ -537,22 +590,6 @@
       </div>
     </div>
   </section>
-
-  <!-- CONTACT 
-  <section id="contact" class="contact">
-    <div class="wrap contact-grid">
-      <div class="contact-copy">
-        <h2>Let's build the habit.</h2>
-        <p>Tell me a bit about where you're at and what you want out of coaching. I'll follow up personally to set up your free consultation.</p>
-      </div>
-      <div class="form-card">
-        <div class="booking-cta">
-          <p class="booking-note">Pick a time that works for you and I'll follow up personally to confirm your free consultation.</p>
-          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min" target="_blank" rel="noopener">Book Your Free Consult</a>
-        </div>
-      </div>
-    </div>
-  </section> -->
 
 </main>
 
@@ -622,6 +659,32 @@
     nextBtn.addEventListener('click', () => goTo(index + 1));
 
     update();
+  })();
+</script>
+
+<script>
+  // Mobile hamburger menu toggle
+  (function(){
+    const toggle = document.getElementById('menuToggle');
+    const panel = document.getElementById('mobileNavPanel');
+    if(!toggle || !panel) return;
+
+    function closeMenu(){
+      toggle.classList.remove('open');
+      panel.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+
+    toggle.addEventListener('click', () => {
+      const isOpen = panel.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close the menu once a link is tapped
+    panel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
   })();
 </script>
 
