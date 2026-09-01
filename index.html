@@ -132,6 +132,9 @@
     color:#fff;
     position:relative;
     box-shadow:14px 14px 0 var(--orange);
+    cursor:pointer;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
   }
   .streak-card .streak-label{font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:.1em;color:#B9C8EA;margin-bottom:4px;}
   .streak-card .streak-title{font-family:'League Spartan',sans-serif;font-weight:800;font-size:22px;margin-bottom:18px;}
@@ -606,7 +609,7 @@
       <a href="https://www.instagram.com/trainwithpedz/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.24 2.22.41.56.21.96.47 1.38.89.42.42.68.82.89 1.38.17.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.8-.41 2.22-.21.56-.47.96-.89 1.38-.42.42-.82.68-1.38.89-.42.17-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.24-2.22-.41-.56-.21-.96-.47-1.38-.89-.42-.42-.68-.82-.89-1.38-.17-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.24-1.8.41-2.22.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.42-.17 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg>
       </a>
-      <a href="LINKEDIN_LINK" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/in/coachpeds/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.37 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
       </a>
     </div>
@@ -616,18 +619,41 @@
 
 <script>
   // Signature habit-streak grid: builds a 13x6 grid, lights up a random ~65% in a staggered wave
-  const grid = document.getElementById('streakGrid');
-  const total = 78;
-  const litIndices = new Set();
-  while(litIndices.size < Math.round(total*0.62)){
-    litIndices.add(Math.floor(Math.random()*total));
-  }
-  for(let i=0;i<total;i++){
-    const sq = document.createElement('span');
-    if(litIndices.has(i)) sq.classList.add('on');
-    sq.style.animationDelay = (Math.random()*1.1).toFixed(2)+'s';
-    grid.appendChild(sq);
-  }
+  // Click/tap the card to replay the fill-in animation with a fresh random pattern.
+  (function(){
+    const grid = document.getElementById('streakGrid');
+    const card = document.querySelector('.streak-card');
+    const total = 78;
+
+    function renderStreak(){
+      grid.innerHTML = '';
+      const litIndices = new Set();
+      while(litIndices.size < Math.round(total*0.62)){
+        litIndices.add(Math.floor(Math.random()*total));
+      }
+      for(let i=0;i<total;i++){
+        const sq = document.createElement('span');
+        if(litIndices.has(i)) sq.classList.add('on');
+        sq.style.animationDelay = (Math.random()*1.1).toFixed(2)+'s';
+        grid.appendChild(sq);
+      }
+    }
+
+    renderStreak();
+
+    if(card){
+      card.addEventListener('click', renderStreak);
+      card.setAttribute('role','button');
+      card.setAttribute('tabindex','0');
+      card.setAttribute('aria-label','Replay streak animation');
+      card.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          renderStreak();
+        }
+      });
+    }
+  })();
 </script>
 
 <script>
