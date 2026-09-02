@@ -21,7 +21,7 @@
     --brown: #6D3B07;
     --line:#D9D1BC;
     --radius:2px;
-    --header-h:100px;
+    --header-h:96px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
@@ -858,6 +858,7 @@
   (function(){
     const toggle = document.getElementById('menuToggle');
     const panel = document.getElementById('mobileNavPanel');
+    const header = document.querySelector('header');
     if(!toggle || !panel) return;
 
     function closeMenu(){
@@ -866,15 +867,45 @@
       toggle.setAttribute('aria-expanded','false');
     }
 
+    // Closes the panel with no animation, so its height collapses immediately
+    // instead of over the usual .25s transition. Used right before we scroll,
+    // so the sticky header is already back to its normal (closed) height when
+    // the scroll position gets calculated — otherwise the still-open dropdown
+    // eats into the scroll offset and the section lands too low.
+    function closeMenuInstant(){
+      panel.style.transition = 'none';
+      closeMenu();
+      panel.offsetHeight; // force reflow so the transition:none takes effect now
+      panel.style.transition = '';
+    }
+
     toggle.addEventListener('click', () => {
       const isOpen = panel.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
 
-    // Close the menu once a link is tapped
+    // Tapping a link: close the dropdown instantly, then scroll to the
+    // section ourselves using the header's real (now-closed) height, instead
+    // of letting the browser's native anchor-jump race the collapse animation.
     panel.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
+      link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href');
+        const target = targetId && targetId.startsWith('#') ? document.querySelector(targetId) : null;
+
+        if(target){
+          e.preventDefault();
+          closeMenuInstant();
+          requestAnimationFrame(() => {
+            const headerH = header ? header.offsetHeight : 0;
+            const y = target.getBoundingClientRect().top + window.scrollY - headerH;
+            window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+            history.pushState(null, '', targetId);
+          });
+        } else {
+          closeMenu();
+        }
+      });
     });
   })();
 </script>
