@@ -356,46 +356,68 @@
 
   /* ---- PACKAGES ---- */
   #packages{
-    background: var(--blue);
+    background: var(--cream);
   }
-  #packages .pricing-note{
-    color: #F0ECE1;
-  }
-  .section-head-packages{max-width:640px;margin-bottom:56px;}
+  .section-head-packages{max-width:640px;margin-bottom:40px;}
   .section-head-packages p{margin-top:16px;font-size:17px;color:var(--ink-soft);line-height:1.6;}
   .section-head-packages h1,h2,h3{
-    color:#F0ECE1;
-    font-size:clamp(80px,3.2vw,80px);
-    padding: 5px;
-    font-family:'League Spartan',sans-serif;font-weight:700;line-height:1.02;letter-spacing:-0.01em;
+    color:var(--orange);
+    font-size:clamp(26px,3.2vw,36px);
+    padding: 5px 0;
+    text-transform:uppercase;
+    font-family:'League Spartan',sans-serif;font-weight:800;line-height:1.02;letter-spacing:.02em;
   }
 
   .pricing{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:22px;
+    align-items:stretch;
   }
   .price-card{
-    background:#F0ECE1;border:1px solid var(--line);border-radius:6px;padding:34px 28px;
+    border-radius:10px;padding:36px 30px 32px;
     display:flex;flex-direction:column;
   }
-
-  /* middle progression card */
-  .price-card.progression{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange);position:relative;}
-  .price-card.progression .badge{
-    position:absolute;top:-13px;left:28px;background:var(--orange);color:#F0ECE1;align-items: center;
-    font-family:'Poppins',sans-serif;font-size:12px;letter-spacing:.08em;
-    padding:5px 10px;border-radius:3px;
+  .price-card .tier{
+    font-family:'League Spartan',sans-serif;font-weight:800;font-size:30px;
+    text-transform:uppercase;line-height:1.05;
   }
-  .price-card .tier{font-family:'League Spartan',sans-serif;font-weight:800;font-size:20px;}
-  .price-card .amount{font-family:'Poppins',sans-serif;font-size:34px;font-weight:600;margin:14px 0 4px;color:var(--blue);}
-  .price-card .amount span{font-style:italic;font-size:14px;color:var(--ink-soft);font-family:'Inter',sans-serif;font-weight:500;}
-  .price-card .desc{color:var(--ink-soft);font-size:14.5px;margin-bottom:22px;}
-  .price-card .bold{font-weight: bold; font-style: italic;}
-  
-  .price-card .btn{justify-content:center;width:100%;}
-  .pay-link{display:block;text-align:center;margin-top:12px;font-size:13px;font-weight:600;color:var(--blue);}
-  .pay-link:hover{color:var(--orange-dark);}
+  .price-card .subtitle{
+    font-family:'League Spartan',sans-serif;font-weight:600;font-size:15px;
+    margin-top:6px;opacity:.85;
+  }
+  .price-card .perks{list-style:none;margin-top:26px;}
+  .price-card .perks li{
+    display:flex;align-items:flex-start;gap:10px;
+    font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.4;margin-bottom:14px;
+  }
+  .price-card .perks .check{
+    width:19px;height:19px;border-radius:50%;flex:none;margin-top:2px;
+    display:flex;align-items:center;justify-content:center;font-size:11px;line-height:1;
+  }
+  .price-card .as-low-as{
+    font-family:'Poppins',sans-serif;font-style:italic;font-size:13px;
+    margin-top:auto;padding-top:22px;opacity:.9;
+  }
+  .price-card .amount{font-family:'League Spartan',sans-serif;font-weight:800;font-size:42px;margin-top:2px;}
+  .price-card .amount span{font-size:19px;font-weight:600;margin-left:2px;}
+  .price-card .btn{justify-content:center;width:100%;margin-top:22px;font-size:12.5px;}
+
+  .price-transformation{background:var(--orange);color:var(--ink);}
+  .price-transformation .check{background:var(--ink);color:var(--orange);}
+  .price-transformation .btn{background:var(--ink);color:#fff;}
+  .price-transformation .btn:hover{background:var(--blue-dark);color:#fff;}
+
+  .price-progression{background:var(--blue-dark);color:#fff;}
+  .price-progression .check{background:#fff;color:var(--blue-dark);}
+  .price-progression .btn{background:#fff;color:var(--blue-dark);}
+  .price-progression .btn:hover{background:var(--orange);color:#fff;}
+
+  .price-foundation{background:#C9C4B7;color:var(--blue);}
+  .price-foundation .check{background:var(--blue);color:#fff;}
+  .price-foundation .btn{background:var(--blue);color:#fff;}
+  .price-foundation .btn:hover{background:var(--orange);}
+
   .pricing-note{margin-top:24px;font-size:13px;color:var(--ink-soft);font-family:'Poppins',sans-serif;text-align:center;line-height:1.6;}
 
   /* ---- CLIENT WINS (carousel) ---- */
@@ -688,40 +710,50 @@
   <!-- PACKAGES -->
   <section id="packages" class="hairline">
     <div class="wrap">
-    <div class="container">
       <div class="section-head-packages">
-        <h2>Find Your Fit*</h2>
+        <h2>Choose Your Plan</h2>
       </div>
       <div class="pricing">
-        <div class="price-card progression">
-          <span class="badge">3 MONTHS</span>
-          <div class="tier">FOUNDATION</div>
-          <div class="amount">₱18,000 <span>(P6,000/mo)</span></div>
-          <p class="bold">For those ready to start their fitness journey.</p>
-          <br><p class="desc">Build your foundation, learn the basics, and get comfortable making fitness part of your routine.</p>
-          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min">I LIKE THIS ONE</a>
+        <div class="price-card price-transformation">
+          <div class="tier">Transformation</div>
+          <div class="subtitle">12-Month Program</div>
+          <ul class="perks">
+            <li><span class="check">✓</span>Full support for real, lasting change</li>
+            <li><span class="check">✓</span>Complete lifestyle transformation</li>
+            <li><span class="check">✓</span>Long-term coaching &amp; accountability</li>
+          </ul>
+          <p class="as-low-as">As low as</p>
+          <div class="amount">₱5,000<span>/mo</span></div>
+          <a class="btn" href="https://calendly.com/trainwithpedz/30min">IM READY TO GO ALL IN</a>
         </div>
 
-        <div class="price-card progression">
-          <span class="badge">6 MONTHS</span>
-          <div class="tier">PROGRESSION</div>
-          <div class="amount">₱33,000 <span>(P5,500/mo)</span></div>
-          <p class="bold">For those ready to build real consistency.</p>
-          <br><p class="desc">Give Yourself more time to develop your training, strengthen your habits, and make steady progress toward your goals.</p>
-          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min">THIS IS FOR ME</a>
+        <div class="price-card price-progression">
+          <div class="tier">Progression</div>
+          <div class="subtitle">6-Month Program</div>
+          <ul class="perks">
+            <li><span class="check">✓</span>Building consistency</li>
+            <li><span class="check">✓</span>Learn proper training progression</li>
+            <li><span class="check">✓</span>Establishing sustainable habits</li>
+          </ul>
+          <p class="as-low-as">As low as</p>
+          <div class="amount">₱5,500<span>/mo</span></div>
+          <a class="btn" href="https://calendly.com/trainwithpedz/30min">THIS IS FOR ME</a>
         </div>
 
-        <div class="price-card progression">
-          <span class="badge">12 MONTHS</span>
-          <div class="tier">TRANSFORMATION</div>
-          <div class="amount">₱60,000 <span>(P5,000/mo)</span></div>
-          <p class="bold">For those ready to make lasting change.</p>
-          <br><p class="desc">Commit to the process with the time and support to work toward bigger goals and create habits that become part of your lifestyle.</p>
-          <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min">IM READY TO GO ALL IN</a>
+        <div class="price-card price-foundation">
+          <div class="tier">Foundation</div>
+          <div class="subtitle">3-Month Program</div>
+          <ul class="perks">
+            <li><span class="check">✓</span>Start your fitness journey</li>
+            <li><span class="check">✓</span>Learn the basics of fitness</li>
+            <li><span class="check">✓</span>Introduction to personal coaching</li>
+          </ul>
+          <p class="as-low-as">As low as</p>
+          <div class="amount">₱6,000<span>/mo</span></div>
+          <a class="btn" href="https://calendly.com/trainwithpedz/30min">I LIKE THIS ONE</a>
         </div>
       </div>
       <p class="pricing-note">*Every package includes the same 1:1 coaching experience: personalized training, weekly check-ins, nutrition guidance, progress tracking, and ongoing support.<br>Choose the commitment that works for you. We'll walk you through everything in your free consultation before you decide.</p>
-    </div>
     </div>
   </section>
 
