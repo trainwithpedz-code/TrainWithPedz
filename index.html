@@ -422,10 +422,11 @@
 
   /* ---- CLIENT WINS (carousel) ---- */
   section{padding:96px 0;}
+  #wins{background:var(--blue);color:#fff;}
   .section-head-testimonials {max-width:640px;margin-bottom:56px;}
-  .section-head-testimonials h2{color:#2654B2;clamp(30px,4vw,46px);margin-top:14px;font-size: 70px;}
-  .section-head-testimonials h1{font-size: 60px; padding-top: 3%; color:var(--blue); align-items: center;}
-  .section-head-testimonials p{margin-top:16px;font-size:17px;color:var(--ink-soft);line-height:1.6;}
+  .section-head-testimonials h2{color:#fff;clamp(30px,4vw,46px);margin-top:14px;font-size: 70px;}
+  .section-head-testimonials h1{font-size: 60px; padding-top: 3%; color:#fff; align-items: center;}
+  .section-head-testimonials p{margin-top:16px;font-size:17px;color:#DCE4F5;line-height:1.6;}
   .wins-carousel{
     position:relative;
     max-width:640px;
@@ -486,6 +487,54 @@
   }
   .carousel-dots button.active{background:var(--orange);}
 
+  /* ---- FAQs ---- */
+  #faqs{background:var(--cream);}
+  .faq-list{max-width:780px;}
+  .faq-item{
+    border-bottom:1px solid var(--line);
+  }
+  .faq-item:first-child{border-top:1px solid var(--line);}
+  .faq-question{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    text-align:left;
+    padding:22px 4px;
+    font-family:'League Spartan',sans-serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--ink);
+  }
+  .faq-question:focus-visible{outline:3px solid var(--blue);outline-offset:3px;}
+  .faq-icon{
+    flex:none;
+    width:28px;height:28px;
+    border-radius:50%;
+    background:var(--orange);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;line-height:1;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .faq-item.open .faq-icon{transform:rotate(45deg);background:var(--blue);}
+  .faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .faq-answer p{
+    padding:0 4px 22px;
+    max-width:640px;
+    font-size:15.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+
   /* ---- FOOTER ---- */
   footer{background:var(--blue);color:#B8B9BC;padding:20px 0;}
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
@@ -536,6 +585,7 @@
       <a href="#how-it-works">How It Works</a>
       <a href="#packages">Packages</a>
       <a href="#wins">Client Wins</a>
+      <a href="#faqs">FAQs</a>
       <!--<a href="#contact">Contact</a>-->
     </div>
     <div class="nav-cta">
@@ -553,6 +603,7 @@
     <a href="#how-it-works">How It Works</a>
     <a href="#packages">Packages</a>
     <a href="#wins">Client Wins</a>
+    <a href="#faqs">FAQs</a>
   </div>
 </header>
 
@@ -794,13 +845,79 @@
     </div>
   </section>
 
+  <!-- FAQs -->
+  <section id="faqs" class="hairline">
+    <div class="wrap">
+      <div class="section-head">
+        <h1>FAQs</h1>
+      </div>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Do I need a gym membership?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Not necessarily — you can train in-person at a gym (membership/day-pass fees are on you), at home, or virtually. Your call, based on what fits your schedule.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What do I need for a home session?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Just a safe, clear space and your own equipment, unless we've arranged otherwise in advance. Everything else works the same as an in-person gym session.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What if I have to miss a session?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p> Just give at least 24 hours' notice and we'll reschedule based on availability. Missed sessions without notice are considered forfeited, so a heads-up protects your session count.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What if the program doesn't work for me?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p> Results depend a lot on consistency, recovery, and nutrition on your end, so outcomes aren't guaranteed. That said, Transformation clients who stay consistent (80%+ adherence) but don't see the results they expected get free coaching extensions under the Triple-Guarantee above.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How do I pay, and is a payment plan available?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Full upfront, monthly, or a partial/deposit plan — payment plans are available at my discretion depending on the package. Either way, your total fee stays the same, and coaching starts once payment is confirmed.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Can I pause or extend my program?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Pauses aren't guaranteed and depend on availability at the time — message me and we'll see what's possible. The free extensions under the Triple-Guarantee are the one exception that's built into the Transformation package.</p>
+          </div>
+        </div>
+        <p class="pricing-note">These FAQs are drafted from your Client-Coach Agreement terms as a starting point — swap in real client questions as they come up.</p>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- FOOTER-->
 <footer>
   <div class="wrap footer-row">
     <div class="footer-brand">
-      <img src="img/footer-brand-cream-final.png" alt="Train With Pedz">
+      <img src="img/TWP-transparent.png" alt="Train With Pedz">
     </div>
     <div class="footer-socials">
       <a href="https://web.facebook.com/dpeds04" target="_blank" rel="noopener" aria-label="Facebook">
@@ -885,6 +1002,34 @@
     nextBtn.addEventListener('click', () => goTo(index + 1));
 
     update();
+  })();
+</script>
+
+<script>
+  // FAQ accordion: each question toggles its own answer open/closed.
+  // Answers use max-height for the slide transition, so the expanded height
+  // is measured from actual scrollHeight rather than a fixed guess.
+  (function(){
+    const items = document.querySelectorAll('#faqList .faq-item');
+    items.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      if(!question || !answer) return;
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        if(isOpen){
+          item.classList.remove('open');
+          question.setAttribute('aria-expanded','false');
+          answer.style.maxHeight = '0px';
+        } else {
+          item.classList.add('open');
+          question.setAttribute('aria-expanded','true');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
   })();
 </script>
 
