@@ -420,6 +420,53 @@
 
   .pricing-note{margin-top:24px;font-size:13px;color:var(--ink-soft);font-family:'Poppins',sans-serif;text-align:center;line-height:1.6;}
 
+  /* ---- EXTRAS (own section, staggered fade-in on scroll) ---- */
+  #extras{background:var(--cream);}
+  .extras-list{max-width:780px;}
+  .extras-item{
+    margin-bottom:30px;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .extras-item:last-child{margin-bottom:0;}
+  .extras-item h3{
+    font-family:'League Spartan',sans-serif;font-weight:800;font-size:18px;color:var(--orange-dark);
+  }
+  .extras-item p{margin-top:6px;font-size:15px;line-height:1.65;color:var(--ink-soft);}
+  /* staggered reveal order, same pattern as the Triple-Guarantee and roadmap */
+  .extras-list.in-view .extras-item:nth-child(1){transition-delay:.1s;}
+  .extras-list.in-view .extras-item:nth-child(2){transition-delay:.7s;}
+  .extras-list.in-view .extras-item{opacity:1;transform:translateY(0);}
+  @media(prefers-reduced-motion: reduce){
+    .extras-item{transition:none;opacity:1;transform:none;}
+  }
+
+  /* ---- TRIPLE GUARANTEE (staggered fade-in on scroll) ---- */
+  #guarantee{background:var(--cream);}
+  .guarantee-list{max-width:780px;}
+  .guarantee-item{
+    margin-bottom:30px;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .guarantee-item:last-child{margin-bottom:0;}
+  .guarantee-item h3{
+    font-family:'League Spartan',sans-serif;font-weight:800;font-size:18px;color:var(--blue);
+  }
+  .guarantee-item h3 .guarantee-name{color:var(--orange-dark);}
+  .guarantee-item h3 em{font-style:italic;font-weight:600;font-size:14.5px;color:var(--ink-soft);}
+  .guarantee-item p{margin-top:6px;font-size:15.5px;line-height:1.6;color:var(--ink-soft);font-style:italic;}
+  /* staggered reveal order, same pattern as the how-it-works roadmap */
+  .guarantee-list.in-view .guarantee-item:nth-child(1){transition-delay:.1s;}
+  .guarantee-list.in-view .guarantee-item:nth-child(2){transition-delay:.7s;}
+  .guarantee-list.in-view .guarantee-item:nth-child(3){transition-delay:1.3s;}
+  .guarantee-list.in-view .guarantee-item{opacity:1;transform:translateY(0);}
+  @media(prefers-reduced-motion: reduce){
+    .guarantee-item{transition:none;opacity:1;transform:none;}
+  }
+
   /* ---- CLIENT WINS (carousel) ---- */
   section{padding:96px 0;}
   #wins{background:var(--blue);color:#fff;}
@@ -768,46 +815,88 @@
         <h2>Choose Your Plan</h2>
       </div>
       <div class="pricing">
-        <div class="price-card price-transformation">
-          <div class="tier">Transformation</div>
-          <div class="subtitle">12-Month Program</div>
+        <div class="price-card price-foundation">
+          <div class="tier">Foundation</div>
+          <div class="subtitle">3-Month Program</div>
           <ul class="perks">
-            <li><span class="check">✓</span>Full support for real, lasting change</li>
-            <li><span class="check">✓</span>Complete lifestyle transformation</li>
-            <li><span class="check">✓</span>Long-term coaching &amp; accountability</li>
+            <li><span class="check">✓</span>Building the habits</li>
+            <li><span class="check">✓</span>Learning the basics</li>
           </ul>
           <p class="as-low-as">As low as</p>
-          <div class="amount">₱5,000<span>/mo</span></div>
-          <a class="btn" href="https://calendly.com/trainwithpedz/30min">IM READY TO GO ALL IN</a>
+          <div class="amount">₱6,000<span>/mo</span></div>
+          <a class="btn" href="https://calendly.com/trainwithpedz/30min">I LIKE THIS ONE</a>
         </div>
 
         <div class="price-card price-progression">
           <div class="tier">Progression</div>
           <div class="subtitle">6-Month Program</div>
           <ul class="perks">
-            <li><span class="check">✓</span>Building consistency</li>
-            <li><span class="check">✓</span>Learn proper training progression</li>
-            <li><span class="check">✓</span>Establishing sustainable habits</li>
+            <li><span class="check">✓</span>Steady progress</li>
+            <li><span class="check">✓</span>Leveling up</li>
           </ul>
           <p class="as-low-as">As low as</p>
           <div class="amount">₱5,500<span>/mo</span></div>
           <a class="btn" href="https://calendly.com/trainwithpedz/30min">THIS IS FOR ME</a>
         </div>
 
-        <div class="price-card price-foundation">
-          <div class="tier">Foundation</div>
-          <div class="subtitle">3-Month Program</div>
+        <div class="price-card price-transformation">
+          <div class="tier">Transformation</div>
+          <div class="subtitle">12-Month Program</div>
           <ul class="perks">
-            <li><span class="check">✓</span>Start your fitness journey</li>
-            <li><span class="check">✓</span>Learn the basics of fitness</li>
-            <li><span class="check">✓</span>Introduction to personal coaching</li>
+            <li><span class="check">✓</span>Full transformation</li>
+            <li><span class="check">✓</span>Max support</li>
           </ul>
           <p class="as-low-as">As low as</p>
-          <div class="amount">₱6,000<span>/mo</span></div>
-          <a class="btn" href="https://calendly.com/trainwithpedz/30min">I LIKE THIS ONE</a>
+          <div class="amount">₱5,000<span>/mo</span></div>
+          <a class="btn" href="https://calendly.com/trainwithpedz/30min">I'M READY TO GO ALL IN</a>
         </div>
       </div>
-      <p class="pricing-note">*Every package includes the same 1:1 coaching experience: personalized training, weekly check-ins, nutrition guidance, progress tracking, and ongoing support.<br>Choose the commitment that works for you. We'll walk you through everything in your free consultation before you decide.</p>
+      <p class="pricing-note">All packages include: a customized training program, hybrid coaching (in-person and/or virtual, 
+based on your schedule), weekly check-ins, and ongoing program adjustments based on your 
+progress and feedback.</p>
+    </div>
+  </section>
+
+  <!-- EXTRAS -->
+  <section id="extras" class="hairline">
+    <div class="wrap">
+      <div class="section-head-packages">
+        <h2>Add-ons &amp; Continuing Your Progress</h2>
+      </div>
+      <div class="extras-list" id="extrasList">
+        <div class="extras-item">
+          <h3>Extra Sessions</h3>
+          <p>Need more than your package includes? Add sessions in bundles of 5 (PHP 3,500) or 10 (PHP 7,000) — PHP 700/session flat, in-person or virtual. Paid upfront; used within your current program term.</p>
+        </div>
+        <div class="extras-item">
+          <h3>Renew Package</h3>
+          <p>Finished your program and want to keep going? Continue month-to-month at your original package's monthly rate. Opt in within 15 days of your program's end date.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRIPLE GUARANTEE -->
+  <section id="guarantee" class="hairline">
+    <div class="wrap">
+      <div class="section-head-packages">
+        <h2>The Triple-Guarantee</h2>
+      </div>
+      <div class="guarantee-list" id="guaranteeList">
+        <div class="guarantee-item">
+          <h3><span class="guarantee-name">7-Day Risk-Free Start</span></h3>
+          <p>Not feeling it in your first week? Request a full refund (minus the PHP 1,000 non-refundable assessment fee) within 7 days of your Start Date. Applies to Foundation, Progression &amp; Transformation when paid in full upfront.</p>
+        </div>
+        <div class="guarantee-item">
+          <h3><span class="guarantee-name">Effort-Based Extension</span> <em>(Transformation only)</em></h3>
+          <p>Hit 80%+ on check-ins and sessions but falling behind plan? Get up to 2 extra weeks of coaching, free.</p>
+        </div>
+        <div class="guarantee-item">
+          <h3><span class="guarantee-name">Results-Based Extension</span> <em>(Transformation only)</em></h3>
+          <p>Followed the program at 80%+ adherence but not seeing the transformation you expected? Get up to 4 extra weeks of coaching, free.</p>
+        </div>
+      </div>
+      <p class="pricing-note">Combined free extension time (guarantees 2 &amp; 3) is capped at 4 weeks per coaching term. Full terms, conditions, and eligibility requirements are set out in your signed Client-Coach Agreement, Section 5.1.</p>
     </div>
   </section>
 
@@ -928,6 +1017,12 @@
       </a>
       <a href="https://www.linkedin.com/in/coachpeds/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.37 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
+      <a href="viber://chat?number=%2B639760323455" aria-label="Viber">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.03 2c-2.7 0-5.24.6-7.19 2.19C2.9 5.77 2 8.06 2 10.9c0 2.5.72 4.5 2.3 6.03.2.19.32.4.32.7-.02.66-.06 1.34-.1 2-.02.4.14.6.5.5.9-.24 1.77-.55 2.56-.98.28-.15.5-.15.8-.07 1.16.32 2.37.47 3.65.4 1.78-.1 3.4-.6 4.86-1.63C19.72 15.7 21 13.14 21 10c0-2.85-.94-5.16-3.02-6.8C16.03 1.6 13.03 2 12.03 2zm4.9 12.05c-.22.62-.87 1.13-1.53 1.28-.44.1-1 .18-2.85-.6-2.4-.99-3.96-3.32-4.08-3.47-.12-.15-.98-1.3-.98-2.5s.62-1.78.85-2.03c.2-.22.44-.28.6-.28.14 0 .28 0 .4.01.13.01.31-.05.48.37.18.44.6 1.53.65 1.64.06.11.1.24.02.4-.07.16-.1.25-.22.38-.11.14-.24.3-.34.4-.11.11-.23.24-.1.47.13.23.6 1 1.29 1.62.9.8 1.65 1.05 1.9 1.17.24.11.38.09.52-.06.14-.15.6-.7.76-.94.16-.24.32-.2.53-.12.22.08 1.36.64 1.6.76.24.11.4.17.46.27.06.1.06.6-.16 1.22zM12.03 4.6c.9 0 1.77.12 2.6.4M14.6 5.93c.7.27 1.32.68 1.83 1.2M17.2 8.2c.4.53.7 1.14.87 1.83" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://t.me/@d_pedz" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.57 8.16-1.86 8.77c-.14.63-.51.78-1.03.49l-2.85-2.1-1.38 1.33c-.15.15-.28.28-.57.28l.2-2.87 5.22-4.71c.23-.2-.05-.31-.34-.11l-6.45 4.06-2.78-.87c-.6-.19-.61-.6.13-.89l10.85-4.18c.5-.19.94.12.86.8z"/></svg>
       </a>
     </div>
     <div class="fine">© 2026 Train With Pedz. Helping individuals build sustainable habits for a healthier, longer, and better life.</div>
@@ -1154,6 +1249,69 @@
         });
       }, { threshold: 0.3 });
       observer.observe(roadmap);
+    } else {
+      reveal();
+    }
+  })();
+</script>
+
+<script>
+  // Triple-Guarantee: the three guarantees fade in one after another as the
+  // section scrolls into view, using the same staggered-reveal pattern as
+  // the "How It Works" roadmap above.
+  (function(){
+    const list = document.getElementById('guaranteeList');
+    if(!list) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function reveal(){
+      list.classList.add('in-view');
+    }
+
+    if(prefersReduced){
+      reveal();
+    } else if('IntersectionObserver' in window){
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            reveal();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(list);
+    } else {
+      reveal();
+    }
+  })();
+</script>
+
+<script>
+  // Extras (Extra Sessions / Renew Package): same staggered fade-in-on-scroll
+  // reveal as the Triple-Guarantee section above.
+  (function(){
+    const list = document.getElementById('extrasList');
+    if(!list) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function reveal(){
+      list.classList.add('in-view');
+    }
+
+    if(prefersReduced){
+      reveal();
+    } else if('IntersectionObserver' in window){
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            reveal();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(list);
     } else {
       reveal();
     }
