@@ -279,14 +279,15 @@
   .roadmap-stops-mobile .stop-copy p{
     margin-top:4px;font-size:13.5px;font-style:italic;color:var(--blue-dark);line-height:1.45;
   }
-  /* staggered reveal order: Free Consult -> Personalized Plan -> Day 1 Assessment -> Coaching */
+  /* staggered reveal order: Consultation -> Agreement -> Plan -> Day 1 -> Coaching */
   .roadmap-stops-desktop .stop:nth-child(1),.roadmap-stops-mobile .stop:nth-child(1){transition-delay:.15s;}
-  .roadmap-stops-desktop .stop:nth-child(2),.roadmap-stops-mobile .stop:nth-child(2){transition-delay:.65s;}
-  .roadmap-stops-desktop .stop:nth-child(3),.roadmap-stops-mobile .stop:nth-child(3){transition-delay:1.15s;}
-  .roadmap-stops-desktop .stop:nth-child(4),.roadmap-stops-mobile .stop:nth-child(4){transition-delay:1.65s;}
+  .roadmap-stops-desktop .stop:nth-child(2),.roadmap-stops-mobile .stop:nth-child(2){transition-delay:.55s;}
+  .roadmap-stops-desktop .stop:nth-child(3),.roadmap-stops-mobile .stop:nth-child(3){transition-delay:.95s;}
+  .roadmap-stops-desktop .stop:nth-child(4),.roadmap-stops-mobile .stop:nth-child(4){transition-delay:1.35s;}
+  .roadmap-stops-desktop .stop:nth-child(5),.roadmap-stops-mobile .stop:nth-child(5){transition-delay:1.75s;}
 
   /* desktop / tablet: wavy road with cards positioned along it */
-  .roadmap-desktop{position:relative;margin-top:-70px;margin-left: -120px;margin-right: -120px;}
+  .roadmap-desktop{position:relative;margin-top:-70px;margin-left: -120px;margin-right: -120px;margin-bottom:70px;}
   .roadmap-desktop .road-svg{width:100%;height:auto;display:block;aspect-ratio:1160/460;}
   .roadmap-desktop .road-base{
     fill:none;stroke:#B7B2A3;stroke-width:34;stroke-linecap:round;
@@ -303,7 +304,7 @@
      the (--x,--y) point on the road, and the copy hangs below it. */
   .roadmap-stops-desktop .stop{
     --tx:-11px;
-    position:absolute;left:var(--x);top:var(--y);width:230px;text-align:left;
+    position:absolute;left:var(--x);top:var(--y);width:200px;text-align:left;
     transform:translate(var(--tx),-11px) scale(.6);
     transform-origin:0 0;
     opacity:0;
@@ -343,8 +344,52 @@
   .roadmap-mobile.in-view .stop{opacity:1;transform:translateX(0);}
   .roadmap-stops-mobile .stop-dot{position:absolute;left:-48px;top:2px;}
 
+  /* ---- Clickable stops ---- */
+  .stop-btn{
+    display:block;width:100%;background:none;border:none;padding:0;margin:0;
+    text-align:inherit;font:inherit;color:inherit;cursor:pointer;
+  }
+  .stop-btn:focus-visible{outline:3px solid var(--blue);outline-offset:6px;border-radius:6px;}
+  .stop-title{
+    display:block;
+    color:var(--orange-dark);font-family:'League Spartan',sans-serif;font-size:17px;font-weight:800;line-height:1.15;
+    transition:color .2s ease;
+  }
+  .stop-desc{font-size:13.5px;font-style:italic;color:var(--blue-dark);line-height:1.45;}
+
+  /* desktop: description lives in the detail panel, not on the road */
+  .roadmap-stops-desktop .stop-desc{display:none;}
+  .roadmap-stops-desktop .stop-title{margin-top:14px;}
+  .roadmap-stops-desktop .stop-dot{transition:transform .2s ease, background .2s ease, box-shadow .2s ease;}
+  .roadmap-stops-desktop .stop-btn:hover .stop-dot{transform:scale(1.2);}
+  .roadmap-stops-desktop .stop-btn:hover .stop-title{color:var(--blue);}
+  .roadmap-stops-desktop .stop.active .stop-dot{background:var(--blue);box-shadow:0 0 0 2px var(--blue);transform:scale(1.25);}
+  .roadmap-stops-desktop .stop.active .stop-title{color:var(--blue);}
+
+  .roadmap-detail{
+    max-width:640px;
+    background:var(--cream-2);
+    border-left:5px solid var(--orange);
+    border-radius:8px;
+    padding:22px 26px 24px;
+  }
+  .roadmap-detail .detail-step{font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--ink-soft);}
+  .roadmap-detail .detail-title{font-family:'League Spartan',sans-serif;font-weight:800;font-size:26px;color:var(--blue);margin-top:4px;line-height:1.1;}
+  .roadmap-detail .detail-desc{margin-top:10px;font-size:16px;line-height:1.6;color:var(--ink-soft);}
+
+  /* mobile: tap a step to expand its description */
+  .roadmap-stops-mobile .stop-btn{padding-right:4px;}
+  .roadmap-stops-mobile .stop-title{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .roadmap-stops-mobile .stop-title::after{content:"+";font-size:20px;font-weight:600;color:var(--blue);transition:transform .25s ease;}
+  .roadmap-stops-mobile .stop.open .stop-title::after{transform:rotate(45deg);}
+  .roadmap-stops-mobile .stop-desc{
+    max-height:0;overflow:hidden;transition:max-height .3s ease;
+  }
+  .roadmap-stops-mobile .stop.open .stop-desc{padding-top:6px;}
+  .roadmap-stops-mobile .stop.open .stop-dot{background:var(--blue);box-shadow:0 0 0 2px var(--blue);}
+
   @media(max-width:700px){
-    .roadmap-desktop{display:none;}
+    .roadmap-desktop,.roadmap-detail{display:none;}
     .roadmap-mobile{display:block;}
   }
 
@@ -666,7 +711,7 @@
         <h1><span class="line-blue">YOUR </span>GOALS.
         <br><span class="line-blue">YOUR </span>PACE.</h1>
         <h1>TRAINING BUILT <br>FOR <span class="line-orange">YOU</span>.</h1>
-        <p class="lead">Personalized One-on-one coaching that turns healthy habits into your new normal. Built for beginners. Made to actually stick, <span class="line-italic-blue">for a healthier, longer, and better life</span>.</p>
+        <p class="lead">Personalized one-on-one coaching to help you build healthy habits that last. Built for beginners, tailored to your lifestyle, and designed to become part of your everyday life — for a healthier, stronger, and better you.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min" target="_blank" rel="noopener">LET'S TALK</a>
           <a class="btn btn-ghost" href="#how-it-works">READ MORE</a>
@@ -694,20 +739,21 @@
         </div>
         <div class="multiple-choice">
           <div class="a-choice">
-            <p>A workout plan that actually fits your schedule?</p>
+            <p>A workout plan that fits your schedule, not the other way around?</p>
           </div>
           <div class="b-choice">
-            <p>Guidance on what to eat without restrictive diets?</p>
+            <p>Guidance on what to eat without restrictive diets or guilt?</p>
           </div>
           <div class="c-choice">
-            <p>Someone to keep you accountable and motivated?</p>
+            <p>Someone to keep you accountable when motivation isn't enough?</p>
           </div>
           <div class="d-choice">
-            <p>A sustainable approach to getting stronger and healthier?</p>
+            <p>A sustainable way to get stronger, healthier, and more confident?</p>
           </div>
+          
         </div>
         <div class="about-us-footer">
-          <h1>If you found yourself saying <span class="bold-line">'YES'</span> to atleast one, you've come to the right place.</h1>
+          <h1>If you said <span class="bold-line">'YES'</span> to atleast one, you're in the right place.</h1>
         </div>
       </div>
 
@@ -716,7 +762,7 @@
         <div class="coach-photo">
           <img src="img/Meet Coach Pedz.jpg" alt="Coach Pedz">
         </div>
-        <p><span class="meet-your-coach-bold-italic">Hi, I'm Coach Pedz!</span> I'm a Certified Personal Trainer dedicated to help you train smarter, build better habits, and achieve results you can maintain.</p>
+        <p><span class="meet-your-coach-bold-italic">Hi, I'm Coach Pedz!</span> I'm a Certified Personal Trainer focused on helping you train smarter, build sustainable habits, and achieve results you can actually maintain for life.</p>
       </div>
 
     </div>
@@ -727,82 +773,103 @@
     <div class="wrap">
       <div class="section-head">
         <h1>How It Works</h1>
+        <p>Click a step to see what happens.</p>
       </div>
 
       <div class="roadmap" id="roadmap">
 
-        <!-- Desktop / tablet: wavy road, cards float along it -->
+        <!-- Desktop / tablet: wavy road, click a stop to read its details below -->
         <div class="roadmap-desktop">
           <svg class="road-svg" viewBox="0 0 1160 460" preserveAspectRatio="none" aria-hidden="true">
-            <path class="road-base" d="M40,400 C220,400 220,300 400,300 S580,190 760,190 S940,70 1120,70"></path>
-            <path class="road-line" d="M40,400 C220,400 220,300 400,300 S580,190 760,190 S940,70 1120,70"></path>
+            <path class="road-base" d="M40,400 C175,400 175,320 310,320 S445,235 580,235 S715,150 850,150 S985,70 1120,70"></path>
+            <path class="road-line" d="M40,400 C175,400 175,320 310,320 S445,235 580,235 S715,150 850,150 S985,70 1120,70"></path>
           </svg>
           <ol class="roadmap-stops-desktop">
-            <li class="stop" style="--x:3.5%;--y:87%;">
-              <span class="stop-dot"></span>
-              <div class="stop-copy">
-                <h3>Free Consult</h3>
-                <p>A relaxed 20-minute call to get to know each other, understand your goals, and learn where you're starting from.</p>
-              </div>
+            <li class="stop" data-step="1" style="--x:3.5%;--y:87%;">
+              <button type="button" class="stop-btn" aria-pressed="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Virtual Consultation</span>
+              </button>
+              <p class="stop-desc">A relaxed call to see if we're the right fit, understand your goals, and answer any questions.</p>
             </li>
-            <li class="stop" style="--x:34.5%;--y:65%;">
-              <span class="stop-dot"></span>
-              <div class="stop-copy">
-                <h3>Personalized Plan</h3>
-                <p>Your training and habit plan gets built around your actual life.</p>
-              </div>
+            <li class="stop" data-step="2" style="--x:26.7%;--y:69.6%;">
+              <button type="button" class="stop-btn" aria-pressed="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Agreement &amp; Commitment</span>
+              </button>
+              <p class="stop-desc">Sign your Client-Coach Agreement, complete your PAR-Q &amp; Health Declaration, and confirm payment. We'll also start your Goal Setting Worksheet together, talking through your goals and what's driving them.</p>
             </li>
-            <li class="stop" style="--x:65.5%;--y:41%;">
-              <span class="stop-dot"></span>
-              <div class="stop-copy">
-                <h3>Day 1 Assessment</h3>
-                <p>Your first session where we further assess your fitness level.</p>
-              </div>
+            <li class="stop" data-step="3" style="--x:50%;--y:51.1%;">
+              <button type="button" class="stop-btn" aria-pressed="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Your Personalized Plan</span>
+              </button>
+              <p class="stop-desc">Based on your goals, I'll build your training, nutrition, and recovery plan and walk you through exactly how the program works. Turnaround: 24-48 hours.</p>
             </li>
-            <li class="stop stop--end" style="--x:96.5%;--y:15%;">
-              <span class="stop-dot"></span>
-              <div class="stop-copy">
-                <h3>Coaching</h3>
-                <p>Regular check-ins, honest adjustments, and accountability.</p>
-              </div>
+            <li class="stop" data-step="4" style="--x:73.3%;--y:32.6%;">
+              <button type="button" class="stop-btn" aria-pressed="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Day 1</span>
+              </button>
+              <p class="stop-desc">Our first session together — a physical assessment to capture your starting point, then we begin training.</p>
+            </li>
+            <li class="stop stop--end" data-step="5" style="--x:96.5%;--y:15.2%;">
+              <button type="button" class="stop-btn" aria-pressed="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Ongoing Coaching</span>
+              </button>
+              <p class="stop-desc">Weekly check-ins, monthly reviews, and steady accountability — for as long as you're in the program.</p>
             </li>
           </ol>
         </div>
 
-        <!-- Mobile: vertical timeline -->
+        <div class="roadmap-detail" id="roadmapDetail" aria-live="polite">
+          <div class="detail-step" id="detailStep"></div>
+          <div class="detail-title" id="detailTitle"></div>
+          <p class="detail-desc" id="detailDesc"></p>
+        </div>
+
+        <!-- Mobile: vertical timeline, tap a step to expand -->
         <div class="roadmap-mobile">
           <svg class="road-svg" viewBox="0 0 34 620" preserveAspectRatio="none" aria-hidden="true">
             <path class="road-base" d="M17,20 V600"></path>
             <path class="road-line" d="M17,20 V600"></path>
           </svg>
           <ol class="roadmap-stops-mobile">
-            <li class="stop">
-              <span class="stop-dot"></span>
-              <div class="stop-copy">
-                <h3>Free Consult</h3>
-                <p>A relaxed 20-minute call to get to know each other, understand your goals, and learn where you're starting from.</p>
-              </div>
+            <li class="stop" data-step="1">
+              <button type="button" class="stop-btn" aria-expanded="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Virtual Consultation</span>
+              </button>
+              <p class="stop-desc">A relaxed call to see if we're the right fit, understand your goals, and answer any questions.</p>
             </li>
-            <li class="stop">
-              <span class="stop-dot"></span>
-              <div class="stop-copy">
-                <h3>Personalized Plan</h3>
-                <p>Your training and habit plan gets built around your actual life.</p>
-              </div>
+            <li class="stop" data-step="2">
+              <button type="button" class="stop-btn" aria-expanded="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Agreement &amp; Commitment</span>
+              </button>
+              <p class="stop-desc">Sign your Client-Coach Agreement, complete your PAR-Q &amp; Health Declaration, and confirm payment. We'll also start your Goal Setting Worksheet together, talking through your goals and what's driving them.</p>
             </li>
-            <li class="stop">
-              <span class="stop-dot"></span>
-              <div class="stop-copy">
-                <h3>Day 1 Assessment</h3>
-                <p>Your first session where we further assess your fitness level.</p>
-              </div>
+            <li class="stop" data-step="3">
+              <button type="button" class="stop-btn" aria-expanded="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Your Personalized Plan</span>
+              </button>
+              <p class="stop-desc">Based on your goals, I'll build your training, nutrition, and recovery plan and walk you through exactly how the program works. Turnaround: 24–48 hours.</p>
             </li>
-            <li class="stop">
-              <span class="stop-dot"></span>
-              <div class="stop-copy">
-                <h3>Coaching</h3>
-                <p>Regular check-ins, honest adjustments, and accountability.</p>
-              </div>
+            <li class="stop" data-step="4">
+              <button type="button" class="stop-btn" aria-expanded="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Day 1</span>
+              </button>
+              <p class="stop-desc">Our first session together — a physical assessment to capture your starting point, then we begin training.</p>
+            </li>
+            <li class="stop" data-step="5">
+              <button type="button" class="stop-btn" aria-expanded="false">
+                <span class="stop-dot"></span>
+                <span class="stop-title">Ongoing Coaching</span>
+              </button>
+              <p class="stop-desc">Weekly check-ins, monthly reviews, and steady accountability — for as long as you're in the program.</p>
             </li>
           </ol>
         </div>
@@ -1018,8 +1085,9 @@ progress and feedback.</p>
       <a href="https://www.instagram.com/trainwithpedz/" target="_blank" rel="noopener" aria-label="Instagram">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.24 2.22.41.56.21.96.47 1.38.89.42.42.68.82.89 1.38.17.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.8-.41 2.22-.21.56-.47.96-.89 1.38-.42.42-.82.68-1.38.89-.42.17-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.24-2.22-.41-.56-.21-.96-.47-1.38-.89-.42-.42-.68-.82-.89-1.38-.17-.42-.36-1.05-.41-2.22-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.24-1.8.41-2.22.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.42-.17 1.05-.36 2.22-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.66-.67 1.07-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13C21.32 1.35 20.65.94 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.4a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg>
       </a>
-      <a href="https://www.linkedin.com/in/coachpeds/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.25 2.37 4.25 5.44v6.3zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      <a href="https://www.tiktok.com/@trainwithpedz" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
       </a>
       <a href="viber://chat?number=%2B639760323455" aria-label="Viber">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.03 2c-2.7 0-5.24.6-7.19 2.19C2.9 5.77 2 8.06 2 10.9c0 2.5.72 4.5 2.3 6.03.2.19.32.4.32.7-.02.66-.06 1.34-.1 2-.02.4.14.6.5.5.9-.24 1.77-.55 2.56-.98.28-.15.5-.15.8-.07 1.16.32 2.37.47 3.65.4 1.78-.1 3.4-.6 4.86-1.63C19.72 15.7 21 13.14 21 10c0-2.85-.94-5.16-3.02-6.8C16.03 1.6 13.03 2 12.03 2zm4.9 12.05c-.22.62-.87 1.13-1.53 1.28-.44.1-1 .18-2.85-.6-2.4-.99-3.96-3.32-4.08-3.47-.12-.15-.98-1.3-.98-2.5s.62-1.78.85-2.03c.2-.22.44-.28.6-.28.14 0 .28 0 .4.01.13.01.31-.05.48.37.18.44.6 1.53.65 1.64.06.11.1.24.02.4-.07.16-.1.25-.22.38-.11.14-.24.3-.34.4-.11.11-.23.24-.1.47.13.23.6 1 1.29 1.62.9.8 1.65 1.05 1.9 1.17.24.11.38.09.52-.06.14-.15.6-.7.76-.94.16-.24.32-.2.53-.12.22.08 1.36.64 1.6.76.24.11.4.17.46.27.06.1.06.6-.16 1.22zM12.03 4.6c.9 0 1.77.12 2.6.4M14.6 5.93c.7.27 1.32.68 1.83 1.2M17.2 8.2c.4.53.7 1.14.87 1.83" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1206,7 +1274,7 @@ progress and feedback.</p>
 
 <script>
   // Animated "How It Works" roadmap: the road draws itself and each stage lights up
-  // in order (Free Consult -> Personalized Plan -> Day 1 Assessment -> Coaching)
+  // in order (Consultation -> Agreement -> Plan -> Day 1 -> Coaching)
   // once the section scrolls into view. Works for both the desktop wavy-road layout
   // and the mobile vertical-timeline layout.
   (function(){
@@ -1217,7 +1285,7 @@ progress and feedback.</p>
     const variants = Array.from(roadmap.querySelectorAll('.roadmap-desktop, .roadmap-mobile'));
 
     // Prime each road path: measure its real length, then hide it behind its own dash
-    // so the transition can "draw" it from Free Consult toward Coaching.
+    // so the transition can "draw" it from Consultation toward Coaching.
     variants.forEach(variant => {
       const base = variant.querySelector('.road-base');
       if(!base) return;
@@ -1255,6 +1323,47 @@ progress and feedback.</p>
     } else {
       reveal();
     }
+  })();
+</script>
+
+<script>
+  // How It Works: click a stop on the road to read its description.
+  // Desktop shows one description at a time in the panel under the road;
+  // mobile expands the tapped step in place.
+  (function(){
+    const roadmap = document.getElementById('roadmap');
+    if(!roadmap) return;
+
+    const dStep = document.getElementById('detailStep');
+    const dTitle = document.getElementById('detailTitle');
+    const dDesc = document.getElementById('detailDesc');
+    const desktopStops = Array.from(roadmap.querySelectorAll('.roadmap-stops-desktop .stop'));
+
+    function selectStop(stop){
+      desktopStops.forEach(s => {
+        const on = s === stop;
+        s.classList.toggle('active', on);
+        s.querySelector('.stop-btn').setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      dStep.textContent = 'STEP ' + stop.dataset.step + ' OF ' + desktopStops.length;
+      dTitle.textContent = stop.querySelector('.stop-title').textContent;
+      dDesc.textContent = stop.querySelector('.stop-desc').textContent;
+    }
+
+    desktopStops.forEach(stop => {
+      stop.querySelector('.stop-btn').addEventListener('click', () => selectStop(stop));
+    });
+    if(desktopStops.length) selectStop(desktopStops[0]);
+
+    roadmap.querySelectorAll('.roadmap-stops-mobile .stop').forEach(stop => {
+      const btn = stop.querySelector('.stop-btn');
+      const desc = stop.querySelector('.stop-desc');
+      btn.addEventListener('click', () => {
+        const open = stop.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        desc.style.maxHeight = open ? desc.scrollHeight + 'px' : '0px';
+      });
+    });
   })();
 </script>
 
