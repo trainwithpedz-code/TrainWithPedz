@@ -666,6 +666,19 @@
     .hero{padding:48px 0 56px;}
     .nav-cta .btn{padding:9px 12px;font-size:11.5px;}
   }
+  .price-card{position:relative;}
+  .price-card .tagline{font-family:'Poppins',sans-serif;font-size:14px;font-style:italic;margin-top:12px;line-height:1.4;opacity:.95;}
+  .badge-recommended{position:absolute;top:-13px;right:22px;background:var(--ink);color:#fff;font-family:'League Spartan',sans-serif;font-weight:800;font-size:12px;letter-spacing:.08em;padding:6px 14px;border-radius:999px;}
+  .price-card{transition:box-shadow .2s ease;}
+  .price-card:hover{box-shadow:0 14px 32px rgba(0,0,0,.22);}
+  @media(min-width:1101px){.pricing{grid-template-columns:repeat(4,1fr);gap:18px;} .price-card{padding:36px 24px 32px;} .price-card .btn{padding-left:10px;padding-right:10px;font-size:12px;white-space:nowrap;}}
+  @media(min-width:901px) and (max-width:1100px){.pricing{grid-template-columns:repeat(2,1fr);}}
+  .price-online{background:var(--blue);color:#fff;}
+  .price-online .check{background:#fff;color:var(--blue);}
+  .price-online .btn{background:var(--orange);color:var(--ink);}
+  .price-online .btn:hover{background:#fff;}
+  .pricing-note a{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+  .pricing-note a:hover{color:var(--orange-dark);}
 </style>
 </head>
 <body>
@@ -687,7 +700,7 @@
       <a class="btn btn-primary" href="https://calendly.com/trainwithpedz/30min" target="_blank" rel="noopener">Book free consult</a>
     </div>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="pdf/TrainWithPedz_Offer.docx.final.pdf" target="_blank" rel="noopener">Terms & Conditions</a>
+      <a class="btn btn-primary" href="pdf/TWP_Terms_and_Conditions.pdf" target="_blank" rel="noopener">Terms &amp; Conditions</a>
     </div>
     <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileNavPanel">
       <span></span><span></span><span></span>
@@ -797,7 +810,7 @@
                 <span class="stop-dot"></span>
                 <span class="stop-title">Agreement &amp; Commitment</span>
               </button>
-              <p class="stop-desc">Sign your Client-Coach Agreement, complete your PAR-Q &amp; Health Declaration, and confirm payment. We'll also start your Goal Setting Worksheet together, talking through your goals and what's driving them.</p>
+              <p class="stop-desc">Sign your <a href="pdf/TWP_Terms_and_Conditions.pdf" target="_blank" rel="noopener">Client-Coach Agreement</a>, complete your PAR-Q &amp; Health Declaration, and confirm payment. We'll also start your Goal Setting Worksheet together, talking through your goals and what's driving them.</p>
             </li>
             <li class="stop" data-step="3" style="--x:50%;--y:51.1%;">
               <button type="button" class="stop-btn" aria-pressed="false">
@@ -848,7 +861,7 @@
                 <span class="stop-dot"></span>
                 <span class="stop-title">Agreement &amp; Commitment</span>
               </button>
-              <p class="stop-desc">Sign your Client-Coach Agreement, complete your PAR-Q &amp; Health Declaration, and confirm payment. We'll also start your Goal Setting Worksheet together, talking through your goals and what's driving them.</p>
+              <p class="stop-desc">Sign your <a href="pdf/TWP_Terms_and_Conditions.pdf" target="_blank" rel="noopener">Client-Coach Agreement</a>, complete your PAR-Q &amp; Health Declaration, and confirm payment. We'll also start your Goal Setting Worksheet together, talking through your goals and what's driving them.</p>
             </li>
             <li class="stop" data-step="3">
               <button type="button" class="stop-btn" aria-expanded="false">
@@ -885,64 +898,68 @@
         <h1>Choose Your Plan</h1>
       </div>
       <div class="pricing">
+
         <div class="price-card price-foundation">
-          <div class="tier">Foundation</div>
-          <div class="subtitle">3-Month Program</div>
+          <div class="tier">Start</div>
+          <div class="subtitle">4-Week Program</div>
+          <p class="tagline">Best for first-timers who want to test coaching and build a starting routine.</p>
           <ul class="perks">
-            <li><span class="check">✓</span>Building the habits</li>
-            <li><span class="check">✓</span>Learning the basics</li>
+            <li><span class="check">✓</span>1-on-1 Personal Training</li>
+            <li><span class="check">✓</span>Customized Workout Program</li>
+            <li><span class="check">✓</span>Progress Tracking &amp; Assessment</li>
+            <li><span class="check">✓</span>8 Sessions</li>
           </ul>
-          <p class="as-low-as">As low as</p>
-          <div class="amount">₱6,000<span>/mo</span></div>
+          <p class="as-low-as">Starting at</p>
+          <div class="amount">₱8,000</div>
           <a class="btn" href="https://calendly.com/trainwithpedz/30min">I LIKE THIS ONE</a>
         </div>
 
         <div class="price-card price-progression">
-          <div class="tier">Progression</div>
-          <div class="subtitle">6-Month Program</div>
+          <div class="tier">Build</div>
+          <div class="subtitle">8-Week Program</div>
+          <p class="tagline">Best for those ready to turn routine into steady progress.</p>
           <ul class="perks">
-            <li><span class="check">✓</span>Steady progress</li>
-            <li><span class="check">✓</span>Leveling up</li>
+            <li><span class="check">✓</span>1-on-1 Personal Training</li>
+            <li><span class="check">✓</span>Customized Workout Program</li>
+            <li><span class="check">✓</span>Progress Tracking &amp; Assessment</li>
+            <li><span class="check">✓</span>16 sessions + 1 bonus session</li>
           </ul>
-          <p class="as-low-as">As low as</p>
-          <div class="amount">₱5,500<span>/mo</span></div>
+          <p class="as-low-as">Starting at</p>
+          <div class="amount">₱16,000</div>
           <a class="btn" href="https://calendly.com/trainwithpedz/30min">THIS IS FOR ME</a>
         </div>
 
         <div class="price-card price-transformation">
-          <div class="tier">Transformation</div>
-          <div class="subtitle">12-Month Program</div>
+          <div class="badge-recommended">RECOMMENDED</div>
+          <div class="tier">Establish</div>
+          <div class="subtitle">12-Week Program</div>
+          <p class="tagline">Best for establishing habits that last a lifetime</p>
           <ul class="perks">
-            <li><span class="check">✓</span>Full transformation</li>
-            <li><span class="check">✓</span>Max support</li>
+            <li><span class="check">✓</span>1-on-1 Personal Training</li>
+            <li><span class="check">✓</span>Customized Workout Program</li>
+            <li><span class="check">✓</span>Progress Tracking &amp; Assessment</li>
+            <li><span class="check">✓</span>24 sessions + 2 bonus sessions</li>
           </ul>
-          <p class="as-low-as">As low as</p>
-          <div class="amount">₱5,000<span>/mo</span></div>
+          <p class="as-low-as">Starting at</p>
+          <div class="amount">₱24,000</div>
           <a class="btn" href="https://calendly.com/trainwithpedz/30min">I'M READY TO GO ALL IN</a>
         </div>
-      </div>
-      <p class="pricing-note">All packages include: a customized training program, hybrid coaching (in-person and/or virtual, 
-based on your schedule), weekly check-ins, and ongoing program adjustments based on your 
-progress and feedback.</p>
-    </div>
-  </section>
 
-  <!-- EXTRAS -->
-  <section id="extras" class="hairline">
-    <div class="wrap">
-      <div class="section-head-packages">
-        <h2>Add-ons &amp; Continuing Your Progress</h2>
-      </div>
-      <div class="extras-list" id="extrasList">
-        <div class="extras-item">
-          <h3>Extra Sessions</h3>
-          <p>Need more than your package includes? Add sessions in bundles of 5 (PHP 3,500) or 10 (PHP 7,000) — PHP 700/session flat, in-person or virtual. Paid upfront; used within your current program term.</p>
+        <div class="price-card price-online">
+          <div class="tier">Online Coaching</div>
+          <div class="subtitle">Month-to-month</div>
+          <p class="tagline">Best for self-driven clients who want coaching without set sessions.</p>
+          <ul class="perks">
+            <li><span class="check">✓</span>Personalized program with ongoing adjustments</li>
+            <li><span class="check">✓</span>Weekly check-ins with coach feedback + a monthly progress review</li>
+          </ul>
+          <p class="as-low-as">Monthly fee</p>
+          <div class="amount">₱4,000<span>/mo</span></div>
+          <a class="btn" href="https://calendly.com/trainwithpedz/30min">COACH ME ONLINE</a>
         </div>
-        <div class="extras-item">
-          <h3>Renew Package</h3>
-          <p>Finished your program and want to keep going? Continue month-to-month at your original package's monthly rate. Opt in within 15 days of your program's end date.</p>
-        </div>
+
       </div>
+      <p class="pricing-note">All packages include: a customized training program, PT sessions based on your schedule, weekly check-ins, and on-going program adjustments based on your progress and feedback.</p>
     </div>
   </section>
 
@@ -950,23 +967,15 @@ progress and feedback.</p>
   <section id="guarantee" class="hairline">
     <div class="wrap">
       <div class="section-head-packages">
-        <h2>The Triple-Guarantee</h2>
+        <h2>The 7-Day Guarantee</h2>
       </div>
       <div class="guarantee-list" id="guaranteeList">
         <div class="guarantee-item">
           <h3><span class="guarantee-name">7-Day Risk-Free Start</span></h3>
-          <p>Not feeling it in your first week? Request a full refund (minus the PHP 1,000 non-refundable assessment fee) within 7 days of your Start Date. Applies to Foundation, Progression &amp; Transformation when paid in full upfront.</p>
-        </div>
-        <div class="guarantee-item">
-          <h3><span class="guarantee-name">Effort-Based Extension</span> <em>(Transformation only)</em></h3>
-          <p>Hit 80%+ on check-ins and sessions but falling behind plan? Get up to 2 extra weeks of coaching, free.</p>
-        </div>
-        <div class="guarantee-item">
-          <h3><span class="guarantee-name">Results-Based Extension</span> <em>(Transformation only)</em></h3>
-          <p>Followed the program at 80%+ adherence but not seeing the transformation you expected? Get up to 4 extra weeks of coaching, free.</p>
+          <p>Not feeling it in your first week? Request a refund within 7 days of your Start Date. You get back what you paid, less ₱1,000 for onboarding and program design and the rate for any sessions already delivered or forfeited. Applies to Start, Build &amp; Establish when paid in full upfront.</p>
         </div>
       </div>
-      <p class="pricing-note">Combined free extension time (guarantees 2 &amp; 3) is capped at 4 weeks per coaching term. Full terms, conditions, and eligibility requirements are set out in your signed Client-Coach Agreement, Section 5.1.</p>
+      <p class="pricing-note">The guarantee does not apply to Online Coaching or to packages paid under a payment plan. Full terms are in Section 6 of your Client-Coach Agreement (see Terms &amp; Conditions).</p>
     </div>
   </section>
 
@@ -1017,7 +1026,7 @@ progress and feedback.</p>
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p>Not necessarily — you can train in-person at a gym (membership/day-pass fees are on you), at home, or virtually. Your call, based on what fits your schedule.</p>
+            <p>Not necessarily — you can train in-person at a gym (membership/day-pass fees are on you), at home, or virtually. Based on your preferences and what fits your schedule. Each in-person session runs 60 mins (90 mins max)</p>
           </div>
         </div>
         <div class="faq-item">
@@ -1026,25 +1035,16 @@ progress and feedback.</p>
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p>Just a safe, clear space and your own equipment, unless we've arranged otherwise in advance. Everything else works the same as an in-person gym session.</p>
+            <p>Just a safe, clear space and your own equipment, unless we've arranged otherwise in advance. The location surcharge for your area applies, and everything else works the same as a gym session.</p>
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
-            <span>What if I have to miss a session?</span>
+            <span>What are the training locations and rates?</span>
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p> Just give at least 24 hours' notice and we'll reschedule based on availability. Missed sessions without notice are considered forfeited, so a heads-up protects your session count.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>What if the program doesn't work for me?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <p>Results depend a lot on consistency, recovery, and nutrition on your end, so outcomes aren't guaranteed. That said, Transformation clients who stay consistent (80%+ adherence) but don't see the results they expected get free coaching extensions under the Triple-Guarantee clause written in the agreement.</p>
+            <p>Package fees are based on a Parañaque as training location. Other locations add a per-session surcharge, from ₱0 up to ₱300 depending on the area. The surcharge applies to every session, including bonus and added sessions. Other locations are by quotation, and any location with a range is confirmed in writing before you buy a package. <a href="pdf/TWP_Training_Locations_and_Rates.pdf" target="_blank" rel="noopener">View Training Locations &amp; Rates (PDF)</a></p>
           </div>
         </div>
         <div class="faq-item">
@@ -1053,19 +1053,50 @@ progress and feedback.</p>
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p>Full upfront, monthly, or a partial/deposit plan — payment plans are available at my discretion depending on the package. Either way, your total fee stays the same, and coaching starts once payment is confirmed.</p>
+            <p>Pay in full, or choose a 50/50, monthly, or weekly payment plan. All plans are available for every Start, Build, and Establish package, your total fee stays the same, and coaching starts once your first payment is confirmed. Online Coaching is billed monthly in advance.
+</p>
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
-            <span>Can I pause or extend my program?</span>
+            <span>What if I have to miss a session?</span>
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p>Pauses aren't guaranteed and depend on availability at the time — message me and we'll see what's possible. The free extensions under the Triple-Guarantee are the one exception that's built into the Transformation package.</p>
+            <p>Give at least 24 hours' notice to cancel or reschedule. Late cancellations and no-shows are treated as forfeited sessions, though I can make reasonable exceptions for emergencies. In cases that I have to cancel, we'll reschedule and your program is extended so you still get every session.</p>
           </div>
         </div>
-        <p class="pricing-note">These FAQs are drafted from your Client-Coach Agreement terms as a starting point. You may read the full Client-Coach Agreement prior to starting the program.</p>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Can I add more sessions?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. If you want to train more often, such as 3x a week, you can add sessions at ₱1,000 per session plus your location's surcharge. Added sessions are paid upfront and used within your current program term. </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span> Can I pause or extend my program?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Pauses and extensions aren't automatic, so message me and we'll see what's possible. If an injury or illness stops you from training safely, tell me promptly and we'll agree on a pause or modification in writing.
+</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span> What happens after my program ends? </span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>You’ll be given an option to move on to Online Coaching, enroll in a package again or you’ll be given an exit strategy plan. We can discuss the matter before your program ends so we can plan the next step together.
+
+</p>
+          </div>
+        </div>
+        <p class="pricing-note">You can read the full Client-Coach Agreement in our <a href="pdf/TWP_Terms_and_Conditions.pdf" target="_blank" rel="noopener">Terms &amp; Conditions</a> before you start.</p>
       </div>
     </div>
   </section>
@@ -1096,7 +1127,7 @@ progress and feedback.</p>
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.57 8.16-1.86 8.77c-.14.63-.51.78-1.03.49l-2.85-2.1-1.38 1.33c-.15.15-.28.28-.57.28l.2-2.87 5.22-4.71c.23-.2-.05-.31-.34-.11l-6.45 4.06-2.78-.87c-.6-.19-.61-.6.13-.89l10.85-4.18c.5-.19.94.12.86.8z"/></svg>
       </a>
     </div>
-    <div class="fine">© 2026 Train With Pedz. Helping individuals build sustainable habits for a healthier, longer, and better life.</div>
+    <div class="fine">© 2026 Train With Pedz. Helping individuals build sustainable habits for a healthier, longer, and better life.<br><a href="pdf/TWP_Terms_and_Conditions.pdf" target="_blank" rel="noopener">Terms &amp; Conditions</a></div>
   </div>
 </footer>
 
@@ -1347,7 +1378,7 @@ progress and feedback.</p>
       });
       dStep.textContent = 'STEP ' + stop.dataset.step + ' OF ' + desktopStops.length;
       dTitle.textContent = stop.querySelector('.stop-title').textContent;
-      dDesc.textContent = stop.querySelector('.stop-desc').textContent;
+      dDesc.innerHTML = stop.querySelector('.stop-desc').innerHTML;
     }
 
     desktopStops.forEach(stop => {
